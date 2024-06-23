@@ -8,7 +8,7 @@ export default function StoreCategories() {
     useEffect(() => {
         fetchCategories(dispatch)
     },[])
-
+console.log(state.categories)
     const items = state.categories.map((category) =>
         <div style={state.selectedCategory?.id === category.id ? {backgroundColor: "var(--accent-color)"} : {}}
              key={category.id}
