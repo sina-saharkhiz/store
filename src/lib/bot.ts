@@ -11,7 +11,7 @@ const bot = new Telegraf(BOT_TOKEN)
 
 bot.start((ctx) => {
     ctx.reply(
-        "Let's get started ;)",
+        "سلام به فروشگاه سینا خوش آمدید امیدوارم بتونید بهترین تجربه را داشته باشید برای ورود روی همین پیام کلک کنید",
         Markup.inlineKeyboard([Markup.button.webApp("View Store", BASE_PATH)]),
     )
 });
@@ -22,7 +22,7 @@ bot.command('menu', (ctx) =>
         type: "web_app",
         web_app: {url: BASE_PATH},
     }))
-bot.on(message("text"), (ctx) => ctx.reply("Hi, I`m Mini Woo. It`s nice to meet you!:) /help"));
+bot.on(message("text"), (ctx) => ctx.reply("سلام سینا هستم اگر کمکی میخوایید در خدمتم /help"));
 
 bot.on("shipping_query", async (ctx) => {
     const payload = JSON.parse(ctx.update.shipping_query.invoice_payload)

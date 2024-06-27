@@ -4,8 +4,8 @@ import {TelegramProvider} from "@/providers/telegram-provider";
 import {ContextProvider} from "@/providers/context-provider";
 
 export const metadata: Metadata = {
-    title: 'MiniWoo',
-    description: 'Telegram mini app for woocommerce integration',
+    title: 'فروشگاه سینا',
+    description: 'فروشگاه وردپرس شما در تلگرام',
     viewport: {
         width: 'device-width',
         initialScale: 1,
@@ -27,7 +27,7 @@ export default function RootLayout({
     children: React.ReactNode
 }) {
     return (
-        <html lang="en">
+        <html lang="fa">
         <body>
         <TelegramProvider>
             <ContextProvider>
