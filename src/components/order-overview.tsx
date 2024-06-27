@@ -24,13 +24,13 @@ export default function OrderOverview() {
                     <textarea
                         className="order-text-field order-block"
                         rows={1}
-                        placeholder="Add comment…"
+                        placeholder="توضیحات"
                         onChange={(e) =>
                             dispatch({type: "comment", comment: e.target.value})
                         }
                     ></textarea>
                 <div className="order-text-field-hint">
-                    Any special requests, details, final wishes etc.
+                    هر درخواستی دارید با ما در میان بگذارید
                 </div>
             </div>
         </section>

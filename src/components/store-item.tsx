@@ -8,6 +8,7 @@ export default function StoreItem({product}: { product: Product }) {
     const image = product.images[0] ?
         {src: product.images[0].src, alt: product.images[0].alt || ""} :
         {src: "/no-image.png", alt: "no image"}
+        
 
     return (
         <div className={`store-product ${cartItem ? "selected" : ""}`}>

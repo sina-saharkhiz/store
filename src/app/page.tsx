@@ -61,7 +61,8 @@ export default function Home() {
             () => dispatch({type: "order"})
         webApp?.MainButton.setParams({
             text_color: '#fff',
-            color: '#31b545'
+            color: '#31b545',
+            text:"ادامه"
         }).onClick(callback)
         webApp?.BackButton.onClick(() => dispatch({type: "storefront"}))
         return () => {
