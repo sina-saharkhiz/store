@@ -32,7 +32,7 @@ export default function ProductOverview() {
                 <button className="store-product-incr-button"
                         onClick={() => dispatch({type: "inc", product})}
                 >
-                    <span className="button-item-label">Add</span>
+                    <span className="button-item-label">افزودن</span>
                 </button>
             </div>
             <div className='product-description' dangerouslySetInnerHTML={{ __html: product.description }}></div>

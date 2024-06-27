@@ -11,8 +11,8 @@ const bot = new Telegraf(BOT_TOKEN)
 
 bot.start((ctx) => {
     ctx.reply(
-        "سلام به فروشگاه سینا خوش آمدید امیدوارم بتونید بهترین تجربه را داشته باشید برای ورود روی همین پیام کلک کنید",
-        Markup.inlineKeyboard([Markup.button.webApp("View Store", BASE_PATH)]),
+        "سلام به فروشگاه سینا خوش آمدید امیدوارم بهترین تجربه را داشته باشید برای ورود روی همین پیام کلیک کنید",
+        Markup.inlineKeyboard([Markup.button.webApp("مشاهده فروشگاه", BASE_PATH)]),
     )
 });
 bot.help((ctx) => ctx.reply("Test /start or /menu command!"))
