@@ -5,6 +5,7 @@ import {useAppContext} from "@/providers/context-provider";
 import StoreFront from "@/components/store-front";
 import OrderOverview from "@/components/order-overview";
 import ProductOverview from "@/components/product-overview";
+import { log } from "console";
 
 export default function Home() {
     const {webApp, user,} = useTelegram()
@@ -89,6 +90,22 @@ export default function Home() {
                         // @ts-ignore
                         console.log('User phone number:', contact)
                         // Here you can dispatch an action or call a function to handle the phone number
+
+                        webApp?.onEvent('contactRequested', function(event) {
+                            // Handle contactRequested event here
+                            if (event.status === 'sent') {
+                                // User shared their phone number
+                                console.log(event)
+                                // @ts-ignore
+                                var phoneNumber = event.result.phoneNumber; // Assuming data structure provides phoneNumber if available
+                                console.log('User shared phone number:', phoneNumber);
+                                // You can proceed with using the phoneNumber here
+                            } else if (event.status === 'cancelled') {
+                                // User declined to share phone number
+                                console.log('User declined to share phone number');
+                            }
+                        });
+
                     }
                 });
             });
