@@ -95,7 +95,9 @@ export default function Home() {
                             // Handle contactRequested event here
                             if (event.status === 'sent') {
                                 // User shared their phone number
-                                console.log(event)
+                                // @ts-ignore
+                                console.log(event.responseUnsafe.phone_number)
+
                                 // @ts-ignore
                                 var phoneNumber = event.result.phoneNumber; // Assuming data structure provides phoneNumber if available
                                 console.log('User shared phone number:', phoneNumber);
