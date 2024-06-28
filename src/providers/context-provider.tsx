@@ -62,6 +62,7 @@ type State = {
     cart: Map<number, CartItem>
     comment?: string,
     shippingZone: number,
+    userData:User,
 }
 
 const StateContext = React.createContext<{ state: State; dispatch: Dispatch } | undefined>(undefined)
@@ -149,6 +150,14 @@ function ContextProvider({children}: {
         categories: [],
         cart: new Map<number, CartItem>(),
         shippingZone: 1,
+        userData: {
+            id: 0, // Replace with appropriate default value
+            first_name: "",
+            last_name: "",
+            phone_number: "",
+            chatId: "",
+            telegram_user_id: ""
+        },
     }
     const [state, dispatch] = React.useReducer(contextReducer, init)
     // NOTE: you *might* need to memoize this value
