@@ -94,14 +94,16 @@ export default function Home() {
                         webApp?.onEvent('contactRequested', function(event) {
                             // Handle contactRequested event here
                             if (event.status === 'sent') {
-                                // User shared their phone number
                                 // @ts-ignore
-                                console.log(event.responseUnsafe.phone_number)
+                                var decodedResponse = decodeURIComponent(event.response);
 
-                                // @ts-ignore
-                                var phoneNumber = event.result.phoneNumber; // Assuming data structure provides phoneNumber if available
-                                console.log('User shared phone number:', phoneNumber);
-                                // You can proceed with using the phoneNumber here
+                                // Parse the decoded response into a JavaScript object
+                                var parsedResponse = JSON.parse(decodedResponse);
+                            
+                                // Extract the phone number from the parsed response
+                                var phoneNumber = parsedResponse.contact.phone_number;
+                            
+                                console.log('User shared phone number:', phoneNumber)
                             } else if (event.status === 'cancelled') {
                                 // User declined to share phone number
                                 console.log('User declined to share phone number');
