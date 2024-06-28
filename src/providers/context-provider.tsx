@@ -36,6 +36,14 @@ export type Product = {
     images: any[],
 }
 
+export type User = {
+    id: number,
+    first_name: string,
+    last_name: string,
+    phone_number: string,
+    chatId:string,
+    telegram_user_id:string,
+}
 export type Category = {
     id: number,
     name: string,

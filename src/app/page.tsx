@@ -7,7 +7,7 @@ import OrderOverview from "@/components/order-overview";
 import ProductOverview from "@/components/product-overview";
 
 export default function Home() {
-    const {webApp, user} = useTelegram()
+    const {webApp, user,} = useTelegram()
     const {state, dispatch} = useAppContext()
 
     const handleCheckout = useCallback(async () => {
@@ -21,6 +21,7 @@ export default function Home() {
         const body = JSON.stringify({
             userId: user?.id,
             chatId: webApp?.initDataUnsafe.chat?.id,
+            //get customer user 
             invoiceSupported,
             comment: state.comment,
             shippingZone: state.shippingZone,
@@ -56,20 +57,53 @@ export default function Home() {
 
     }, [webApp, state.cart, state.comment, state.shippingZone])
 
+    // useEffect(() => {
+    //     const callback = state.mode === "order" ? handleCheckout :
+    //         () => dispatch({type: "order"})
+    //     webApp?.MainButton.setParams({
+    //         text_color: '#fff',
+    //         color: '#31b545',
+    //         text:"ادامه"
+    //     }).onClick(callback)
+    //     webApp?.BackButton.onClick(() => dispatch({type: "storefront"}))
+    //     return () => {
+    //         //prevent multiple call
+    //         webApp?.MainButton.offClick(callback)
+    //     }
+    // }, [webApp, state.mode, handleCheckout])
     useEffect(() => {
-        const callback = state.mode === "order" ? handleCheckout :
-            () => dispatch({type: "order"})
+        const callback = state.mode === "order" ? handleCheckout : () => {
+            webApp?.MainButton.setParams({
+                text_color: '#fff',
+                color: '#31b545',
+                text: "برای ادامه شماره تلفن خود را با ما به اشتراک بزارید"
+            });
+    
+            // Request the user's contact information
+            webApp?.MainButton.onClick(() => {
+                webApp?.requestContact((contact) => {
+                    if (contact ) {
+                        console.log('User phone number:', contact)
+                        // Here you can dispatch an action or call a function to handle the phone number
+                        //dispatch({ type: "order", payload: contact.phone_number });
+                    }
+                });
+            });
+        };
+    
         webApp?.MainButton.setParams({
             text_color: '#fff',
             color: '#31b545',
-            text:"ادامه"
-        }).onClick(callback)
-        webApp?.BackButton.onClick(() => dispatch({type: "storefront"}))
+            text: "ادامه"
+        }).onClick(callback);
+    
+        webApp?.BackButton.onClick(() => dispatch({ type: "storefront" }));
+    
         return () => {
-            //prevent multiple call
-            webApp?.MainButton.offClick(callback)
-        }
-    }, [webApp, state.mode, handleCheckout])
+            // Prevent multiple calls
+            webApp?.MainButton.offClick(callback);
+        };
+    }, [webApp, state.mode, handleCheckout]);
 
     useEffect(() => {
         if (state.mode === "storefront")
