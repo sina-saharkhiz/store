@@ -81,12 +81,13 @@ export default function Home() {
     
             // Request the user's contact information
             webApp?.MainButton.onClick(() => {
+
+
                 webApp?.requestContact((contact) => {
                     // @ts-ignore
                     if (contact ) {
-                        
                         // @ts-ignore
-                        console.log('User phone number:', contact.result.phone_number)
+                        console.log('User phone number:', contact)
                         // Here you can dispatch an action or call a function to handle the phone number
                     }
                 });
