@@ -83,9 +83,10 @@ export default function Home() {
             webApp?.MainButton.onClick(() => {
                 webApp?.requestContact((contact) => {
                     // @ts-ignore
-                    if (contact &&  contact.phone_number) {
+                    if (contact ) {
+                        
                         // @ts-ignore
-                        console.log('User phone number:', contact.phone_number)
+                        console.log('User phone number:', contact.result.phone_number)
                         // Here you can dispatch an action or call a function to handle the phone number
                     }
                 });
